@@ -20,8 +20,12 @@ const LoginPage = () =>
             //Si puedo hacer el login
             navigate("/main")
         }
+        else{
+            setError(true)
+        }
 
     }
+
  
     return <div className="container">
         <h1>Login</h1>
@@ -75,9 +79,30 @@ const LoginPage = () =>
 
         <div>
             {
+                (() =>
+                {
+                    //Validación de formularios
+                    const arrAlerts = []
 
+                    if(error && username === "")
+                    {
+                        arrAlerts.push(<div className="alert alert-danger">Ingrese UserName</div>)
+                    }
+                    if(error && password === "")
+                    {
+                        arrAlerts.push(<div className="alert alert-danger">Ingrese Password</div>)
+                    }
+                    if(error && carreraIDSelected === -1)
+                    {
+                        arrAlerts.push(<div className="alert alert-danger">Selecciona carrera</div>)
+                    }
+
+                    return arrAlerts
+                })()
+                
                 
             }
+            
         </div>
     
     </div>
