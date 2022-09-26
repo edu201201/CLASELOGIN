@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import { Link, useNavigate } from 'react-router-dom';
 
 const LoginPage = () =>
 {
@@ -6,8 +7,23 @@ const LoginPage = () =>
     const [username,setUsername] = useState("")
     const [password,setPassword] = useState("")
     const [carreraIDSelected, setCarreraIdSelected] = useState(-1)
+    const [error, setError] = useState(false)
+
+
+    //Hook navegacion
+    const navigate = useNavigate();
+
+    const loginOnclick = () =>
+    {
+        if(username !== "" && password !== "" && carreraIDSelected !== -1)
+        {
+            //Si puedo hacer el login
+            navigate("/main")
+        }
+
+    }
  
-    return <div className="bg-success container" style={{width:"400px"}}>
+    return <div className="container">
         <h1>Login</h1>
         <div>
             <label className="form-label">
@@ -34,6 +50,7 @@ const LoginPage = () =>
         </div>
 
 
+
         <div>
             <label className="form-label">Carrera</label>
             <select className="form-select" 
@@ -48,10 +65,20 @@ const LoginPage = () =>
                 <option value={-1}> --- Ingrese su carrera --- </option>
             </select>
         </div>
+        
+        <br />
 
         <button className="btn btn-primary text-black"
                 type="button" 
-                onClick={ () => console.log(`Username: ${username} Password: ${password} Carrera: ${carreraIDSelected}`)}>LOGIN</button>
+                onClick={loginOnclick}>
+                    LOGIN</button>
+
+        <div>
+            {
+
+                
+            }
+        </div>
     
     </div>
 }

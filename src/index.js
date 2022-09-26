@@ -4,11 +4,17 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import LoginPage from './components/LoginPage';
 import MainPage from './components/MainPage';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode >
-    <MainPage/>
+    <BrowserRouter>
+      <Routes>
+       <Route path='/login' element={<LoginPage/>}/>
+        <Route path='/main' element={<MainPage/>}/>
+      </Routes>
+    </BrowserRouter>
   </React.StrictMode>
 );
 
